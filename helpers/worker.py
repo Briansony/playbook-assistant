@@ -3,12 +3,12 @@ import os
 
 class playbook_creator:
 
-    def __init__(self, mode, without_inventory=False, path=None, name=None, *roles):
-        self.without_inventory = without_inventory
-        self.mode = mode
-        self.path = path
-        self.name = name
-        self.roles = roles
+    def __init__(self, **kwargs):
+        self.without_inventory = kwargs.get('without_inventory', None)
+        self.mode = kwargs.get('mode', 'default')
+        self.path = kwargs.get('path', None)
+        self.name = kwargs.get('name', None)
+        self.roles = kwargs.get('roles', None)
         self.full_role_structure = ('tasks', 'handlers', 'templates', 'files', 'vars', 'meta')
         self.default_role_structure = ('tasks', 'templates', 'vars')
 
