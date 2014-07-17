@@ -4,7 +4,7 @@ import os
 class playbook_creator:
 
     def __init__(self, **kwargs):
-        self.without_inventory = kwargs.get('without_inventory', None)
+        self.without_inventory = kwargs.get('without_inventory', False)
         self.mode = kwargs.get('mode', 'default')
         self.path = kwargs.get('path', None)
         self.name = kwargs.get('name', None)
@@ -30,19 +30,24 @@ class playbook_creator:
 
         roles_path = os.path.join(self.path, self.name, 'roles')
 
-        # Create roles, group_vars and host_vars directories
-        for i in ('group_vars', 'roles', 'host_vars'):
-            self._dir_create(i)
+        if self.mode == 'full':
+            # Create roles, group_vars and host_vars directories
+            for i in ('group_vars', 'roles', 'host_vars'):
+                self._dir_create(i)
+
+        else:
+            self._dir_create('roles')
 
         # Create all needed directories in roles dir
-        for i in self.full_role_structure:
-            dir_name = "roles/%s" % i
-            self._dir_create(dir_name)
+        for k in self.roles:
+            for i in self.full_role_structure:
+                dir_name = os.path.join('roles', k, i)
+                self._dir_create(dir_name)
 
-        # Create main.yml files in needed dirs
-        for i in ('tasks', 'handlers', 'vars', 'meta'):
-            self._file_create("".format(roles_path, i), 'main.yml')
-
-        # Create main and inventory files
-        for i in ('hosts', 'main.yml'):
-            self._file_create("".format(self.path, self.name), i)
+        # # Create main.yml files in needed dirs
+        # for i in ('tasks', 'handlers', 'vars', 'meta'):
+        #     self._file_create("".format(roles_path, i), 'main.yml')
+        #
+        # # Create main and inventory files
+        # for i in ('hosts', 'main.yml'):
+        #     self._file_create("".format(self.path, self.name), i)
