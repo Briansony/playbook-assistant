@@ -26,18 +26,23 @@ class playbook_creator:
         return dir_name
 
 
-    def _roles_structure_create(self):
-
-        for i in self.roles:
-            path = os.path.join(self.path, self.name, 'roles', i)
-            os.makedirs(path)
-
     def full_playbook(self):
 
-        if self.mode == 'full':
-            for i in ('group_vars', 'roles', 'host_vars'):
-                self._dir_create(i)
+        roles_path = os.path.join(self.path, self.name, 'roles')
 
-            for i in self.full_role_structure:
-                dir_name = "roles/%s" % i
-                self._dir_create(dir_name)
+        # Create roles, group_vars and host_vars directories
+        for i in ('group_vars', 'roles', 'host_vars'):
+            self._dir_create(i)
+
+        # Create all needed directories in roles dir
+        for i in self.full_role_structure:
+            dir_name = "roles/%s" % i
+            self._dir_create(dir_name)
+
+        # Create main.yml files in needed dirs
+        for i in ('tasks', 'handlers', 'vars', 'meta'):
+            self._file_create("".format(roles_path, i), 'main.yml')
+
+        # Create main and inventory files
+        for i in ('hosts', 'main.yml'):
+            self._file_create("".format(self.path, self.name), i)
