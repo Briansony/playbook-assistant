@@ -25,6 +25,33 @@ class playbook_creator:
 
         return dir_name
 
+
+    def _role_struct_create(self, role_struct):
+
+        # Create roles
+        for k in self.roles:
+            for i in role_struct:
+                dir_name = os.path.join('roles', k, i)
+                self._dir_create(dir_name)
+
+
+    def _role_struct_add(self, role_struct):
+
+        # Add roles
+        # Check whether roles exist
+        for k in self.roles:
+            for i in role_struct:
+                dir_name = os.path.join('roles', k, i)
+                self._dir_create(dir_name)
+
+
+    def _role_meta_files(self, meta_dirs):
+        # Create main.yml files in needed dirs
+        for k in self.roles:
+            for i in meta_dirs:
+                self._file_create(os.path.join(self.roles_path, k, i), 'main.yml')
+
+
     def _create_meta(self):
 
         # Create group_vars and host_vars dirs
@@ -38,20 +65,19 @@ class playbook_creator:
             role_struct = self.default_role_structure
             meta_file_dirs = ('tasks', 'vars')
 
-        # Create roles with roles meta
-        for k in self.roles:
-            for i in role_struct:
-                dir_name = os.path.join('roles', k, i)
-                self._dir_create(dir_name)
-
-        # Create main.yml files in needed dirs
-        for k in self.roles:
-            for i in meta_file_dirs:
-                self._file_create(os.path.join(self.roles_path, k, i), 'main.yml')
+        # Process roles
+        self._role_struct_create(role_struct)
+        self._role_meta_files(meta_file_dirs)
 
         # Create inventory and main playbook file
-        for i in ('hosts', 'main.yml'):
+        if not self.without_inventory:
+            req_files = ('hosts', 'main.yml')
+        else:
+            req_files = ('main.yml',)
+
+        for i in req_files:
             self._file_create(os.path.join(self.path, self.name), i)
+
 
     def playbook_create(self):
 
@@ -61,3 +87,6 @@ class playbook_creator:
         else:
             # Create playbook
             self._create_meta()
+
+
+    # def new_role(self):
