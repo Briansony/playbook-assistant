@@ -1,4 +1,5 @@
 import os
+import ansible_knife_exs
 
 class playbook_creator:
 
@@ -54,5 +55,9 @@ class playbook_creator:
 
     def playbook_create(self):
 
-        # Create playbook
-        self._create_meta()
+        if os.path.isdir(os.path.join(self.path, self.name)):
+            msg = "This playbook already exists"
+            raise ansible_knife_exs.PlaybookExists(msg)
+        else:
+            # Create playbook
+            self._create_meta()
