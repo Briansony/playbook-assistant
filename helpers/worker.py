@@ -88,5 +88,8 @@ class playbook_creator:
             # Create playbook
             self._create_meta()
 
+# TODO: add method for new role
 
     # def new_role(self):
+
+# TODO: add method for download from github
