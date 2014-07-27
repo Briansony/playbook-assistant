@@ -11,7 +11,6 @@ class playbook_creator:
         self.roles = kwargs.get('roles', None)
         self.full_role_structure = ('tasks', 'handlers', 'templates', 'files', 'vars', 'meta')
         self.default_role_structure = ('tasks', 'templates', 'vars')
-        self.roles_path = os.path.join(self.path, self.name, 'roles')
 
     # This function creates files
     def _files_create(self, path, *args):
@@ -48,29 +47,29 @@ class playbook_creator:
             raise ansible_knife_exs.PlaybookExists(msg)
         else:
             # Create playbook dir
-            _dirs_create(self.path, self.name)
+            self._dirs_create(self.path, self.name)
 
             # Create role dir
             path = os.path.join(self.path, self.name)
-            _dirs_create(path, 'roles')
+            self._dirs_create(path, 'roles')
 
         # Create root meta files
         if not self.without_inventory:
             req_files = ('hosts', 'main.yml')
         else:
             req_files = ('main.yml',)
-        _files_create(path, *req_files)
+        self._files_create(path, *req_files)
 
         # Create extra root dirs
         if self.mode == 'full':
             for i in ('group_vars', 'host_vars'):
-                _dirs_create(path, i)
+                self._dirs_create(path, i)
 
         # Create roles structure
-        _create_roles_dirs()
+        self._create_roles_dirs()
 
 
-    def role_create(self):
+    def playbook_add(self):
 
         path = os.path.join(self.path, self.name, 'roles')
         for i in self.roles:
@@ -79,7 +78,7 @@ class playbook_creator:
                 raise ansible_knife_exs.RoleExists(msg)
 
         # Add roles
-        _create_roles_dirs()
+        self._create_roles_dirs()
 
 
 # TODO: add method for download from github
