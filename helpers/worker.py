@@ -4,11 +4,11 @@ import ansible_knife_exs
 class playbook_creator:
 
     def __init__(self, **kwargs):
-        self.without_inventory = kwargs.get('without_inventory', False)
-        self.mode = kwargs.get('mode', 'default')
-        self.path = kwargs.get('path', None)
-        self.name = kwargs.get('name', None)
-        self.roles = kwargs.get('roles', None)
+        self.without_inventory = kwargs.get('without_inventory')
+        self.mode = kwargs.get('mode')
+        self.path = kwargs.get('path')
+        self.name = kwargs.get('name')
+        self.roles = kwargs.get('roles')
         self.full_role_structure = ('tasks', 'handlers', 'templates', 'files', 'vars', 'meta')
         self.default_role_structure = ('tasks', 'templates', 'vars')
 
