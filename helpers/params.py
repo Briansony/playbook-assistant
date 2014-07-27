@@ -4,8 +4,6 @@ parser = argparse.ArgumentParser()
 
 subparsers = parser.add_subparsers(help='commands')
 
-# TODO: fix --roles=bla,foo
-
 # A create command
 create_parser = subparsers.add_parser('create', help='Create playbook')
 create_parser.add_argument('-t', '--task', choices=('create', 'add'), required=True, help='Task name')
