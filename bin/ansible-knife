@@ -13,7 +13,7 @@ from helpers.worker import playbook_creator
 if args['task'] == 'create':
     playbook_creator(**args).playbook_create()
 elif args['task'] == 'add':
-    playbook_creator(**args).new_role()
+    playbook_creator(**args).playbook_add()
 else:
     playbook_creator(**args).download()
 
