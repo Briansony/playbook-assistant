@@ -9,3 +9,6 @@ class AnsibleKnifeError(Exception):
 
 class PlaybookExists(AnsibleKnifeError):
     pass
+
+class RoleExists(AnsibleKnifeError):
+    pass
