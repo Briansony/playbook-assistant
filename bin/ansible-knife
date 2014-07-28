@@ -7,15 +7,13 @@ sys.path.append('/'.join(path.split('/')[0:-1]))
 
 from helpers.params import args
 from helpers.worker import playbook_creator
+from helpers.cvs.github import Github
 
-# TODO: dispatcher below
 
-if args['task'] == 'create':
-    playbook_creator(**args).playbook_create()
-elif args['task'] == 'add':
-    playbook_creator(**args).playbook_add()
+if args['subparser_name'] == 'create':
+    if args['task'] == 'create':
+        playbook_creator(**args).playbook_create()
+    else:
+        playbook_creator(**args).playbook_add()
 else:
-    playbook_creator(**args).download()
-
-
-
+    Github(**args).repo_clone()

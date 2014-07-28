@@ -12,3 +12,6 @@ class PlaybookExists(AnsibleKnifeError):
 
 class RoleExists(AnsibleKnifeError):
     pass
+
+class GitWrongRepo(AnsibleKnifeError):
+    pass
