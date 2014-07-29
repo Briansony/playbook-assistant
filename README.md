@@ -1,6 +1,9 @@
 ansible-knife
 =============
 
+Simple utility for playbook dirs structure creation. It also provides ability to download your github repo with your playbooks.
+
+
 Installation:
 ----------
 
