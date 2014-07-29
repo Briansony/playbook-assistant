@@ -22,35 +22,13 @@ Directories structure depending on mode:
 
 full:
 ___
-my_playbook/
-&nbsp;&nbsp;&nbsp;&nbsp;group_vars/
-&nbsp;&nbsp;&nbsp;&nbsp;host_vars/
-&nbsp;&nbsp;&nbsp;&nbsp;roles/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role1/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tasks/ 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;handlers/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templates/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;files/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vars/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meta/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;....
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rolen/ # same kind of structure as "role1"
-&nbsp;&nbsp;&nbsp;&nbsp;hosts
-&nbsp;&nbsp;&nbsp;&nbsp;site.yml
-           
+Make host_vars,group_vars directories in root of playbook. Roles will contain next dirs: tasks, handlers, templates, files, vars, meta
+
 default:
 ___
-my_playbook/
-&nbsp;&nbsp;&nbsp;&nbsp;roles/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role1/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tasks/ 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;templates/
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vars/
-&nbsp;&nbsp;&nbsp;&nbsp;....
-&nbsp;&nbsp;&nbsp;&nbsp;rolen/ # same kind of structure as "role1"
-&nbsp;&nbsp;&nbsp;&nbsp;hosts
-&nbsp;&nbsp;&nbsp;&nbsp;site.yml
-           
+Just tasks, templates, vars directories in role.
+
+
 Use -w or --without_inventory flag if you want to deprecate inventory file creation:
 ---------------
 
