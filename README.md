@@ -4,7 +4,7 @@ ansible-knife
 Installation:
 ----------
 
-pip install ansible_knife
+`pip install ansible_knife`
 
 Create new playbook:
 -------------------
