@@ -1,5 +1,5 @@
 import os
-import playbook_assistant.playbook_assistant_exs
+from  playbook_assistant.helpers import playbook_assistant_exs
 
 class playbook_creator:
 
@@ -44,7 +44,7 @@ class playbook_creator:
 
         if os.path.isdir(os.path.join(self.path, self.name)):
             msg = "This playbook already exists"
-            raise ansible_knife_exs.PlaybookExists(msg)
+            raise playbook_assistant_exs.PlaybookExists(msg)
         else:
             # Create playbook dir
             self._dirs_create(self.path, self.name)
@@ -75,7 +75,7 @@ class playbook_creator:
         for i in self.roles:
             if os.path.isdir(os.path.join(path, i)):
                 msg = "{} role already exists. Modify request and try again".format(i)
-                raise ansible_knife_exs.RoleExists(msg)
+                raise playbook_assistant_exs.RoleExists(msg)
 
         # Add roles
         self._create_roles_dirs()

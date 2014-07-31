@@ -22,4 +22,4 @@ class Github:
             git.Git(self.path).clone(self.url)
             print('Repo was successfully downloaded.')
         except:
-            raise ansible_knife_exs.GitWrongRepo('Wrong repo url or current directory exists.')
+            raise playbook_assistant_exs.GitWrongRepo('Wrong repo url or current directory exists.')
