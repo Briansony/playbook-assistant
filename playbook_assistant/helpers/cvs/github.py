@@ -1,5 +1,5 @@
 import git
-from ansible_knife.helpers import ansible_knife_exs
+from playbook_assistant.helpers import playbook_assistant_exs
 
 class Github:
     """
