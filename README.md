@@ -1,4 +1,4 @@
-ansible-knife
+playbook-assistant
 =============
 
 Simple utility for playbook dirs structure creation. It also provides ability to download your github repo with your playbooks.
@@ -7,7 +7,7 @@ Simple utility for playbook dirs structure creation. It also provides ability to
 Installation:
 ----------
 
-`pip install ansible_knife`
+`pip install playbook-assistant`
 
 Create new playbook:
 -------------------
