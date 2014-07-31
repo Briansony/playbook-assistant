@@ -1,5 +1,5 @@
 import os
-import ansible_knife.ansible_knife_exs
+import playbook_assistant.playbook_assistant_exs
 
 class playbook_creator:
 
