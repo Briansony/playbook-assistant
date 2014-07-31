@@ -79,6 +79,3 @@ class playbook_creator:
 
         # Add roles
         self._create_roles_dirs()
-
-
-# TODO: add method for download from github
